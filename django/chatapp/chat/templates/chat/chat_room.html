@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat with {{ user.username }}</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h2>Chat with {{ user.username }}</h2>
+        <div class="chat-box">
+            {% for message in messages %}
+                <div class="message">
+                    <strong>{{ message.sender.username }}:</strong> {{ message.content }}
+                </div>
+            {% endfor %}
+        </div>
+        <form method="POST">
+            {% csrf_token %}
+            <input type="text" name="message" placeholder="Type a message..." required>
+            <button type="submit">Send</button>
+        </form>
+    </div>
+</body>
+</html>
